@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-app-deploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: react-frontend-app
+  template:
+    metadata:
+      labels:
+        app: react-frontend-app
+    spec:
+      containers:
+      - image: react-app1
+        name: react-container
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: REACT_APP_NEST_BASE_URL
+          value: 127.0.0.1:50912
